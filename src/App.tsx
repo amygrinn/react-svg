@@ -1,4 +1,4 @@
-import React from '../react/build/node_modules/react/cjs/react.development.js';
+import React from 'react';
 
 export default function App() {
   return (
