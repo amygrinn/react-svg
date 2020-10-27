@@ -1,0 +1,6 @@
+[submodule "html-webpack-plugin"]
+	path = html-webpack-plugin
+	url = git@github.com:tylergrinn/html-webpack-plugin.git
+[submodule "react"]
+	path = react
+	url = git@github.com:tylergrinn/react.git

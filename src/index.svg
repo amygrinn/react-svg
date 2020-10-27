@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="5cm" height="4cm" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <desc>Home page for Tyler Grinn's development projects</desc>
+
+  <!-- Matomo Tag Manager -->
+  <script type="text/javascript">
+    var _mtm = (window._mtm = window._mtm || []); _mtm.push({ 'mtm.startTime':
+    new Date().getTime(), event: 'mtm.Start' }); var d = document, g =
+    d.createElement('script'), s = d.getElementsByTagName('script')[0]; g.type =
+    'text/javascript'; g.href =
+    'https://matomo.tygr.info/js/container_Gu1mI1dN.js';
+    s.parentNode.insertBefore(g, s);
+  </script>
+  <!-- End Matomo Tag Manager -->
+
+  <g id="app"></g>
+
+  <%= htmlWebpackPlugin.tags.headTags %>
+  <%= htmlWebpackPlugin.tags.bodyTags %>
+
+</svg>
