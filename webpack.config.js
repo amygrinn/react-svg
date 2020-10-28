@@ -77,6 +77,7 @@ module.exports = {
       filename: 'index.svg',
       inject: false,
       svg: true,
+      minify: false,
     }),
     ...(PROD
       ? [
