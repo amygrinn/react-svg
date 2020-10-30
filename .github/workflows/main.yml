@@ -5,34 +5,22 @@ on: push
 env:
   YARN_CACHE_FOLDER: .yarn
 
-definitions:
-  - &node
-    uses: actions/setup-node@v1
-    with:
-      node-version: 14
-
-  - &checkout
-    uses: actions/checkout@v2
-    with:
-      submodules: recursive
-
-  - &cache
-    uses: actions/cache@v2
-    with:
-      path: ${{ env.YARN_CACHE_FOLDER }}
-      key: ${{ env.CACHE_NAME }}-${{ hashFiles('yarn.lock') }}-${{ hashFiles('react/yarn.lock') }}
-      restore-keys: ${{ runner.os }}-quality-${{ env.CACHE_NAME }}-
-
 jobs:
   quality:
     runs-on: ubuntu-latest
 
     steps:
-      - <<: *node
-      - <<: *checkout
-      - <<: *cache
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - uses: actions/cache@v2
         env:
           CACHE_NAME: quality-cache
+        with:
+          path: ${{ env.YARN_CACHE_FOLDER }}
+          key: ${{ env.CACHE_NAME }}-${{ hashFiles('yarn.lock') }}
+          restore-keys: ${{ env.CACHE_NAME }}-
 
       - run: yarn
       - run: yarn quality:check
@@ -41,11 +29,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - <<: *node
-      - <<: *checkout
-      - <<: *cache
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - uses: actions/cache@v2
         env:
           CACHE_NAME: build-cache
+        with:
+          path: ${{ env.YARN_CACHE_FOLDER }}
+          key: ${{ env.CACHE_NAME }}-${{ hashFiles('yarn.lock') }}-${{ hashFiles('react/yarn.lock') }}
+          restore-keys: ${{ env.CACHE_NAME }}-
 
       - run: yarn
       - run: yarn --cwd react # Install react dependencies
