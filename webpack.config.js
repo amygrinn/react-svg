@@ -77,7 +77,6 @@ module.exports = {
       filename: 'index.svg',
       inject: false,
       svg: true,
-      // minify: false,
     }),
     new HtmlInjectReactDomRenderPlugin({
       elementId: 'app',

@@ -1,5 +1,5 @@
 require('@babel/register');
-const HtmlWebpackPlugin = require('./html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactDOMServer = require('./react/build/node_modules/react-dom/server');
 const React = require('react');
 
