@@ -23,4 +23,5 @@ jobs:
       with:
         node-version: 14
     - run: yarn
+    - run: yarn --cwd react
     - run: yarn build
