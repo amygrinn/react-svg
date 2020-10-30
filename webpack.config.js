@@ -26,9 +26,7 @@ module.exports = {
         test: /\.s?[ac]ss$/i,
         exclude: /[\\/]node_modules[\\/]/,
         use: [
-          PROD
-            ? MiniCssExtractPlugin.loader
-            : { loader: 'style-loader', options: { insert: 'svg' } },
+          MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'sass-loader',
@@ -72,6 +70,9 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+    }),
     new HtmlWebpackPlugin({
       template: 'src/index.svg',
       filename: 'index.svg',
@@ -81,9 +82,6 @@ module.exports = {
     }),
     ...(PROD
       ? [
-          new MiniCssExtractPlugin({
-            filename: '[name].[contenthash].css',
-          }),
           new BundleAnalyzerPlugin({
             analyzerMode: 'static',
             openAnalyzer: false,
