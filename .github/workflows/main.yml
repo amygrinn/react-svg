@@ -48,13 +48,14 @@ jobs:
 
       - uses: actions/cache@v2
         env:
-          CACHE_NAME: build-react-cache
+          CACHE_NAME: build-react-cache-v2
         with:
           path: react/build/node_modules
           key: ${{ env.CACHE_NAME }}-${{ hashFiles('.git/modules/react/HEAD') }}
 
       # Only run if submodule commit has changed
       - run: '[ ! -e "react/build/node_modules" ] && yarn --cwd react || true'
+        if:
       - run: '[ ! -e "react/build/node_modules" ] && yarn build:react || true'
 
   build:
@@ -80,7 +81,7 @@ jobs:
 
       - uses: actions/cache@v2
         env:
-          CACHE_NAME: build-react-cache
+          CACHE_NAME: build-react-cache-v2
         with:
           path: react/build/node_modules
           key: ${{ env.CACHE_NAME }}-${{ hashFiles('.git/modules/react/HEAD') }}
