@@ -29,7 +29,7 @@
     "quality:fix": "run-p --print-label --silent lint:fix prettier:fix",
     "quality": "npm run quality:fix",
     "updateBrowserslist": "npx browserslist@latest --update-db",
-    "postinstall": "yarn --cwd react"
+    "postinstall": "yarn --cwd react install"
   },
   "dependencies": {
     "@babel/core": "^7.12.3",
