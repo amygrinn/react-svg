@@ -1,5 +1,5 @@
-import ReactDOM from '../react/build/node_modules/react-dom';
 import React from 'react';
+import ReactDOM from '../react/build/node_modules/react-dom';
 import App from './App';
 import './styles/main.scss';
 

@@ -60,9 +60,7 @@ module.exports = {
   devtool: PROD ? false : 'inline-cheap-source-map',
   devServer: {
     historyApiFallback: {
-      rewrites: [
-        { from: /./, to: '/index.svg'}
-      ]
+      rewrites: [{ from: /./, to: '/index.svg' }],
     },
     clientLogLevel: 'silent',
     writeToDisk: true,
