@@ -14,6 +14,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
+
       - uses: actions/cache@v2
         env:
           CACHE_NAME: quality-cache
@@ -25,27 +26,68 @@ jobs:
       - run: yarn
       - run: yarn quality:check
 
-  build:
+  build-react:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+
       - uses: actions/setup-node@v1
         with:
           node-version: 14
+
+      - uses: actions/cache@v2
+        env:
+          CACHE_NAME: build-react-node-modules-cache
+        with:
+          path: ${{ env.YARN_CACHE_FOLDER }}
+          key: ${{ env.CACHE_NAME }}-${{ hashFiles('react/yarn.lock') }}
+          restore-keys: ${{ env.CACHE_NAME }}-
+
+      - uses: actions/cache@v2
+        env:
+          CACHE_NAME: build-react-cache
+        with:
+          path: react/build/node_modules
+          key: ${{ env.CACHE_NAME }}-${{ hashFiles('.git/modules/react/HEAD') }}
+
+      # Only run if submodule commit has changed
+      - run: '[ ! -e "react/build/node_modules" ] && yarn --cwd react'
+      - run: '[ ! -e "react/build/node_modules" ] && yarn build:react'
+
+  build:
+    runs-on: ubuntu-latest
+    needs: build-react
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
       - uses: actions/cache@v2
         env:
           CACHE_NAME: build-cache
         with:
           path: ${{ env.YARN_CACHE_FOLDER }}
-          key: ${{ env.CACHE_NAME }}-${{ hashFiles('yarn.lock') }}-${{ hashFiles('react/yarn.lock') }}
+          key: ${{ env.CACHE_NAME }}-${{ hashFiles('yarn.lock') }}
           restore-keys: ${{ env.CACHE_NAME }}-
 
+      - uses: actions/cache@v2
+        env:
+          CACHE_NAME: build-react-cache
+        with:
+          path: react/build/node_modules
+          key: ${{ env.CACHE_NAME }}-${{ hashFiles('.git/modules/react/HEAD') }}
+
       - run: yarn --production # Skip dev dependencies
-      - run: yarn --cwd react # Install react dependencies
       - run: yarn build
+
       - uses: actions/upload-artifact@v2
         with:
           name: build

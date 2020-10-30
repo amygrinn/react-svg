@@ -16,8 +16,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build:react": "yarn --cwd react build react/index,react-dom/index,scheduler --type=node",
-    "webpack": "webpack",
-    "build": "run-s build:react webpack",
+    "build": "webpack",
     "serve": "http-server dist --silent",
     "lint:check": "eslint . --ext .js,.jsx",
     "lint:fix": "eslint . --ext .js,.jsx --fix",
