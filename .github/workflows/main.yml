@@ -54,8 +54,8 @@ jobs:
           key: ${{ env.CACHE_NAME }}-${{ hashFiles('.git/modules/react/HEAD') }}
 
       # Only run if submodule commit has changed
-      - run: '[ ! -e "react/build/node_modules" ] && yarn --cwd react'
-      - run: '[ ! -e "react/build/node_modules" ] && yarn build:react'
+      - run: '[ ! -e "react/build/node_modules" ] && yarn --cwd react || true'
+      - run: '[ ! -e "react/build/node_modules" ] && yarn build:react || true'
 
   build:
     runs-on: ubuntu-latest
