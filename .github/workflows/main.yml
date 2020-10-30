@@ -55,6 +55,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     if: github.ref == 'refs/heads/main'
+    env:
+      DEPLOY_RSA: ${{ secrets.DEPLOY_RSA }}
 
     steps:
       - uses: actions/download-artifact@v2
@@ -62,9 +64,7 @@ jobs:
           name: build
 
       # SSH Setup
-      - env:
-          DEPLOY_RSA: ${{ secrets.DEPLOY_RSA }}
-        run: echo $DEPLOY_RSA > deploy_rsa
+      - run: echo $DEPLOY_RSA > deploy_rsa
       - run: eval `ssh-agent -s`
       - run: chmod 600 deploy_rsa
       - run: ssh-add deploy_rsa
