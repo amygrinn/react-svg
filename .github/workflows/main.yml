@@ -43,7 +43,7 @@ jobs:
           key: ${{ env.CACHE_NAME }}-${{ hashFiles('yarn.lock') }}-${{ hashFiles('react/yarn.lock') }}
           restore-keys: ${{ env.CACHE_NAME }}-
 
-      - run: yarn
+      - run: yarn --production # Skip dev dependencies
       - run: yarn --cwd react # Install react dependencies
       - run: yarn build
       - uses: actions/upload-artifact@v2
