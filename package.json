@@ -15,7 +15,7 @@
   "homepage": "https://github.com/tylergrinn/tygr#readme",
   "scripts": {
     "start": "webpack-dev-server",
-    "build:react": "yarn --cwd react build react/index,react-dom/index,scheduler --type=node",
+    "build:react": "yarn --cwd react build react/index,react-dom/index,react-dom/server,scheduler --type=node",
     "build": "webpack",
     "serve": "http-server dist --silent",
     "lint:check": "eslint . --ext .js,.jsx",
@@ -39,6 +39,7 @@
     "css-loader": "^5.0.0",
     "dotenv": "^8.2.0",
     "http-server": "^0.12.3",
+    "jsdom": "^16.4.0",
     "mini-css-extract-plugin": "^1.2.0",
     "npm-run-all": "^4.1.5",
     "pretty-error": "^2.1.2",

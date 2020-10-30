@@ -5,4 +5,4 @@ import './styles/main.scss';
 
 const app = React.createElement(App);
 
-ReactDOM.render(app, document.getElementById('app'));
+ReactDOM.hydrate(app, document.getElementById('app'));

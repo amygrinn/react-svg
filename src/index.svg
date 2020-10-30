@@ -14,11 +14,6 @@
   </script>
   <!-- End Matomo Tag Manager -->
 
-  <defs id="styles"></defs>
-
   <g id="app"></g>
-
-  <%= htmlWebpackPlugin.tags.headTags %>
   <%= htmlWebpackPlugin.tags.bodyTags %>
-
 </svg>

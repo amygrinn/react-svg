@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('./html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const HtmlInjectReactDomRenderPlugin = require('./html-inject-react-dom-render-plugin');
 
 const PROD = process.env.NODE_ENV === 'production';
 
@@ -76,6 +77,10 @@ module.exports = {
       inject: false,
       svg: true,
       minify: false,
+    }),
+    new HtmlInjectReactDomRenderPlugin({
+      elementId: 'app',
+      componentFile: path.resolve(__dirname, 'src', 'App.jsx'),
     }),
     ...(PROD
       ? [
