@@ -1,5 +1,4 @@
 <?xml version="1.0" standalone="no"?>
-<?xml-stylesheet type="text/css" href="<%= htmlWebpackPlugin.files.css[0] %>"?>
 <svg width="4in" height="4in" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <desc>Home page for Tyler Grinn's development projects</desc>
 
@@ -14,6 +13,9 @@
   </script>
   <!-- End Matomo Tag Manager -->
 
+  <style id="styles"></style>
+
   <g id="app"></g>
+  
   <%= htmlWebpackPlugin.tags.bodyTags %>
 </svg>

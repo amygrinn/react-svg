@@ -61,6 +61,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: build-react
+    env:
+      NODE_ENV: production
 
     steps:
       - uses: actions/checkout@v2
@@ -86,7 +88,7 @@ jobs:
           path: react/build/node_modules
           key: ${{ env.CACHE_NAME }}-${{ hashFiles('.git/modules/react/HEAD') }}
 
-      - run: yarn --production # Skip dev dependencies
+      - run: yarn
       - run: yarn build
 
       - uses: actions/upload-artifact@v2
