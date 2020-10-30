@@ -15,7 +15,7 @@
   "homepage": "https://github.com/tylergrinn/tygr#readme",
   "scripts": {
     "start": "webpack-dev-server",
-    "build:react": "yarn --cwd react build react/index,react-dom/index,scheduler --type node",
+    "build:react": "yarn --cwd react build react/index,react-dom/index,scheduler --type=node",
     "webpack": "webpack",
     "build": "run-s build:react webpack",
     "serve": "http-server dist --silent",
